@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class Ben {
     private ArrayList<Task> tasks = new ArrayList<Task>();
@@ -45,7 +46,7 @@ public class Ben {
             tasks.add(t);
         } else if (x.charAt(1) == 'D') {
             String des = x.split("] ")[1].split(" \\(")[0].strip();
-            String by = x.split("by: ")[1].split("\\)")[0].strip();
+            LocalDateTime by = LocalDateTime.parse(x.split("by: ")[1].split("\\)")[0].strip());
             Deadlines d = new Deadlines(des, by);
             if (x.charAt(4) == 'X') {
                 d.markAsDone();
@@ -53,8 +54,8 @@ public class Ben {
             tasks.add(d);
         } else if (x.charAt(1) == 'E') {
             String des = x.split("] ")[1].split(" \\(")[0].strip();
-            String from_time = x.split("from: ")[1].split(" to:")[0].strip();
-            String to_time = x.split("to: ")[1].strip();
+            LocalDateTime from_time = LocalDateTime.parse(x.split("from: ")[1].split(" to:")[0].strip());
+            LocalDateTime to_time = LocalDateTime.parse(x.split("to: ")[1].strip());
             Events e = new Events(des, from_time, to_time);
             if (x.charAt(4) == 'X') {
                 e.markAsDone();
@@ -119,27 +120,31 @@ public class Ben {
                     System.out.println("  " + c.toString());
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 } catch (Exception e) {
-                    System.out.println(e);
+                    System.out.println("OOPS try giving this input, todo _____");
                 }
                 break;
             case DEADLINE:
                 try {
                     String des = response.split("deadline ")[1].split("/by")[0].strip();
-                    String by = response.split("/by")[1].strip();
+                    String date = response.split("/by")[1].strip();
+                    LocalDateTime by = LocalDateTime.parse(date.replace(" ", "T") + ":00");
                     Deadlines c = new Deadlines(des, by);
                     tasks.add(c);
                     System.out.println("Got it. I've added this task:");
                     System.out.println("  " + c.toString());
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 } catch (Exception e) {
+                    System.out.println(e);
                     System.out.println("OOPS try giving this input, deadline _____ /by ___");
                 }
                 break;
             case EVENT:
                 try {
                     String des = response.split("event ")[1].split("/from")[0].strip();
-                    String from_time = response.split("/from")[1].split("/to")[0].strip();
-                    String to_time = response.split("/to")[1].strip();
+                    String from = response.split("/from")[1].split("/to")[0].strip();
+                    LocalDateTime from_time = LocalDateTime.parse(from.replace(" ", "T") + ":00");
+                    String to = response.split("/to")[1].strip();
+                    LocalDateTime to_time = LocalDateTime.parse(to.replace(" ", "T") + ":00");
                     Events c = new Events(des, from_time, to_time);
                     tasks.add(c);
                     System.out.println("Got it. I've added this task:");
@@ -162,10 +167,21 @@ public class Ben {
             String s = printFileContents();
             ben.addTaskFromFile(s);
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("omg error obtaining task from file");
         }
         System.out.println("Hello! I'm Ben");
         System.out.println("What can I do for you?");
+
+        System.out.println("For a todo task, use: todo [task description]");
+        System.out.println("Example: todo Buy groceries");
+
+        System.out.println("For a deadline task, use: deadline [task description] /by [yyyy-MM-dd HH:mm]");
+        System.out.println("Example: deadline Submit report /by 2025-03-15 23:59");
+
+        System.out.println("For an event, use: event [event description] /from [yyyy-MM-dd HH:mm] /to [yyyy-MM-dd HH:mm]");
+        System.out.println("Example: event Team meeting /from 2025-03-15 14:00 /to 2025-03-15 15:30");
+
+
         String response = scanner.nextLine();
         while(!Objects.equals(response, "bye")){
             try{
