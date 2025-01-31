@@ -11,14 +11,9 @@ public class Events extends Task{
         this.to = to;
     }
 
-    public String fromatToString(LocalDateTime dateTime){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return dateTime.format(formatter);
-
-    }
-
     @Override
     public String toString(){
-        return "[E]" + super.toString() + " (from: " + fromatToString(from) + " to: " + fromatToString(to) + ")";
+        return "[E]" + super.toString() + " (from: " + Parser.fromatToString(from) + " to: "
+                + Parser.fromatToString(to) + ")";
     }
 }

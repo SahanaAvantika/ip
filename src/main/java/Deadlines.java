@@ -17,6 +17,6 @@ public class Deadlines extends Task{
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + fromatToString(by) + ")";
+        return "[D]" + super.toString() + " (by: " + Parser.fromatToString(by) + ")";
     }
 }
