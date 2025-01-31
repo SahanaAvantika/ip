@@ -1,4 +1,4 @@
-package Ben;
+package Ben.ui;
 import Commands.*;
 import Storage.Storage;
 import Parser.Parser;

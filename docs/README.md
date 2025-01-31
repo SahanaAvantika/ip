@@ -1,4 +1,4 @@
-# Ben.Ben User Guide
+# Ben.ui.Ben User Guide
 
 // Update the title above to match the actual product name
 

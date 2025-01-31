@@ -5,7 +5,7 @@ import TaskList.TaskList;
 
 public class Ui {
     public static void introMsg(){
-        System.out.println("Hello! I'm Ben.Ben");
+        System.out.println("Hello! I'm Ben.ui.Ben");
         System.out.println("What can I do for you?");
 
         System.out.println("For a todo task, use: todo [task description]");
