@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Ben {
@@ -12,30 +11,29 @@ public class Ben {
         try {
             this.tasks = new TaskList(storage.load());
         } catch (Exception e) {
-            Ui.showLoadingError();
+            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
     public void run() {
-        Ui.introMsg();
-        Scanner scanner = new Scanner(System.in);
-        String response = scanner.nextLine();
-        while(!Objects.equals(response, "bye")){
-            try{
-                Parser.excuteCommand(response, tasks, ui);
-                response = scanner.nextLine();
-            } catch (Exception e){
-                System.out.println("Invalid Input, try again!");
-                response = scanner.nextLine();
-            }
-        }
 
-        try {
-            Ui.bye();
-            Storage.writeToFile(tasks.printListForStorage());
-        } catch (Exception e){
-            Ui.showLoadingError();
+        ui.introMsg();
+        boolean isExit = false;
+        Scanner scanner = new Scanner(System.in);
+        
+        while (!isExit && scanner.hasNextLine()) {
+            try {
+                String response = scanner.nextLine();
+                Commands c = Parser.executeCommand(response);
+
+                if (c != null) {
+                    c.execute(tasks, ui, storage);
+                    isExit = c.isExit();
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid Input, try again!");
+            }
         }
 
         scanner.close();
