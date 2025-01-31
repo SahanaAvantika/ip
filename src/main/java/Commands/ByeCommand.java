@@ -1,4 +1,9 @@
-public class ByeCommand extends Commands{
+package Commands;
+import Storage.Storage;
+import TaskList.TaskList;
+import Ui.Ui;
+
+public class ByeCommand extends Commands {
 
     @Override
     public void execute(TaskList list, Ui ui, Storage storage){

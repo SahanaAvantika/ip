@@ -1,6 +1,11 @@
+package Parser;
+
+import Commands.*;
+import Command.Command;
+import Task.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class Parser {
 
@@ -73,13 +78,13 @@ public class Parser {
 
     public static Task txtToTask(String x) {
         try {
-            if (x.charAt(1) == 'T') { // ToDos
+            if (x.charAt(1) == 'T') { // Task.ToDos
                 ToDos t = new ToDos(x.substring(7));
                 if (x.charAt(4) == 'X') {
                     t.markAsDone();
                 }
                 return t;
-            } else if (x.charAt(1) == 'D') { // Deadlines
+            } else if (x.charAt(1) == 'D') { // Task.Deadlines
                 String des = x.split("] ")[1].split(" \\(")[0].strip();
                 String byStr = x.split("by: ")[1].split("\\)")[0].strip();
                 LocalDateTime by = Parser.listToTask(byStr);
@@ -88,7 +93,7 @@ public class Parser {
                     d.markAsDone();
                 }
                 return d;
-            } else if (x.charAt(1) == 'E') { // Events
+            } else if (x.charAt(1) == 'E') { // Task.Events
                 String des = x.split("] ")[1].split(" \\(")[0].strip();
                 String fromStr = x.split("from: ")[1].split(" to:")[0].strip();
                 String toStr = x.split("to: ")[1].split("\\)")[0].strip();
