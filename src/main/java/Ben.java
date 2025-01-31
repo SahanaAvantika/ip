@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Ben {
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private Ui ui;//hmm now my UI all static
 
     public Ben(String filePath) {
         this.ui = new Ui();
