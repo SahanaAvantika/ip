@@ -25,7 +25,7 @@ public class Ben {
 
     public void run() {
 
-        ui.introMsg();
+        ui.introMsg(); //better msg coming
         boolean isExit = false;
         Scanner scanner = new Scanner(System.in);
         
