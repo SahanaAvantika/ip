@@ -36,7 +36,7 @@ public class Ben {
 
                 if (c != null) {
                     c.execute(tasks, ui, storage);
-                    isExit = c.isExit();
+                    isExit = c.isExit(); //Boolean methods should be named to sound like booleans
                 }
             } catch (Exception e) {
                 System.out.println("Invalid Input, try again!");
