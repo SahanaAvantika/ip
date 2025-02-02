@@ -5,7 +5,7 @@ import Ui.Ui;
 
 
 public class UnmarkCommand extends Commands {
-    int i;
+    private int i;
 
     public UnmarkCommand(int i) {
         this.i = i;
