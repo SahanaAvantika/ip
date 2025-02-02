@@ -92,4 +92,19 @@ public class TaskList {
         return s;
     }
 
+    /** Return all Task with the word given by the user
+     *
+     * @param des The word given by the user.
+     * @return ArrayList with the tasks that contain that des.
+     */
+    public ArrayList<Task> getTasks(String des){
+        ArrayList<Task> aptTask = new ArrayList<>();
+        for (Task task : tasks) {
+            if(task.getDescription().contains(des)){
+                aptTask.add(task);
+            }
+        }
+        return aptTask;
+    }
+
 }

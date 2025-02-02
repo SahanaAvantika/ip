@@ -19,6 +19,13 @@ public class Parser {
     public static Commands executeCommand(String response){
         Command cmd = Command.valueOf(response.split("\\s+")[0].toUpperCase());
         switch (cmd){
+            case FIND:
+                try {
+                    String des = response.split("\\s+")[1];
+                    return new FindCommand(des);
+                } catch (Exception e) {
+                    System.out.println("OOPS, please valid input after find, find ____");
+                }
             case BYE:
                 return new ByeCommand();
 

@@ -3,6 +3,8 @@ package Ui;
 import Task.Task;
 import TaskList.TaskList;
 
+import java.util.ArrayList;
+
 public class Ui {
 
     /**
@@ -79,6 +81,18 @@ public class Ui {
      */
     public static void list(){
         System.out.println("Here are the tasks in your list:");
+    }
+
+    /** Returns all tasks in the list with the word(input) given by user.
+     *
+     * @param tasks is all the tasks in the list with the input word given by the user.
+     */
+    public static void find(ArrayList<Task> tasks){
+        System.out.println(" Here are the matching tasks in your list:");
+        for(int i = 0; i < tasks.size(); i++){
+            int s = i + 1;
+            System.out.println(s + "." + tasks.get(i).toString());
+        }
     }
 }
 

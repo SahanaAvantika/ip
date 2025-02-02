@@ -5,7 +5,7 @@ import Ui.Ui;
 import Task.*;
 
 public class DeleteCommand extends Commands {
-    int i;
+    private int i;
 
     public DeleteCommand(int i){
         this.i = i;
