@@ -9,6 +9,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Parser {
 
+    /**
+     * Parses the user input and returns the corresponding command to execute.
+     * If the input is unclear or invalid, null is returned.
+     *
+     * @param response String input by the user
+     * @return Commands command to execute.
+     */
     public static Commands executeCommand(String response){
         Command cmd = Command.valueOf(response.split("\\s+")[0].toUpperCase());
         switch (cmd){
@@ -76,15 +83,22 @@ public class Parser {
 
     }
 
+    /**
+     * Parses the string input form the file and returns the corresponding task.
+     * If the input is unclear or invalid, null is returned.
+     *
+     * @param x String input by the user
+     * @return Task that the string represents.
+     */
     public static Task txtToTask(String x) {
         try {
-            if (x.charAt(1) == 'T') { // Task.ToDos
+            if (x.charAt(1) == 'T') {
                 ToDos t = new ToDos(x.substring(7));
                 if (x.charAt(4) == 'X') {
                     t.markAsDone();
                 }
                 return t;
-            } else if (x.charAt(1) == 'D') { // Task.Deadlines
+            } else if (x.charAt(1) == 'D') {
                 String des = x.split("] ")[1].split(" \\(")[0].strip();
                 String byStr = x.split("by: ")[1].split("\\)")[0].strip();
                 LocalDateTime by = Parser.listToTask(byStr);
@@ -93,7 +107,7 @@ public class Parser {
                     d.markAsDone();
                 }
                 return d;
-            } else if (x.charAt(1) == 'E') { // Task.Events
+            } else if (x.charAt(1) == 'E') {
                 String des = x.split("] ")[1].split(" \\(")[0].strip();
                 String fromStr = x.split("from: ")[1].split(" to:")[0].strip();
                 String toStr = x.split("to: ")[1].split("\\)")[0].strip();
@@ -113,12 +127,23 @@ public class Parser {
         }
     }
 
-
+    /**
+     * Parses the string input into LocalDateTime object.
+     *
+     * @param s String in [MMM dd yyyy hh:mm a] format.
+     * @return LocalDateTime object that the string represents.
+     */
     public static LocalDateTime listToTask(String s) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return LocalDateTime.parse(s, inputFormatter);
     }
 
+    /**
+     * Parses the LocalDateTime object into String.
+     *
+     * @param dateTime LocalDateTime object.
+     * @return String  that the LocalDateTime represents.
+     */
     public static String fromatToString(LocalDateTime dateTime){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return dateTime.format(formatter);

@@ -17,6 +17,12 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Return the ArrayList of tasks from the text file.
+     *
+     * @return ArrayList<Task> from the text file.
+     * @throws FileNotFoundException if the text file cannot be found.
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         Scanner s = new Scanner(printFileContents());
@@ -27,6 +33,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Reads the text file.
+     *
+     * @return String from the text file.
+     * @throws FileNotFoundException if the text file cannot be found.
+     */
     private String printFileContents() throws FileNotFoundException {
         File f = new File(filepath);
         Scanner s = new Scanner(f);
@@ -37,6 +49,12 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Writes the string of tasks to save to the file.
+     *
+     * @param textToAdd String of tasks.
+     * @throws IOException  If the file cannot be found or an error occurs during writing.
+     */
     public static void writeToFile(String textToAdd) throws IOException {
         File f = new File("data/ben.txt");
         f.delete();
