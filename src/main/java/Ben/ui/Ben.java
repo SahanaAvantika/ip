@@ -7,6 +7,8 @@ import TaskList.TaskList;
 import Ui.Ui;
 
 import java.util.Scanner;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class Ben {
     private Storage storage;
@@ -28,7 +30,31 @@ public class Ben {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Ben heard: " + input;
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream tempOut = new PrintStream(outputStream);
+        System.setOut(tempOut);
+
+        try {
+            Scanner scanner = new Scanner(input);
+            boolean isExit = false;
+
+            while (!isExit && scanner.hasNextLine()) {
+                String command = scanner.nextLine();
+                Commands c = Parser.executeCommand(command);
+                if (c != null) {
+                    c.execute(tasks, ui, storage);
+                }
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println("Invalid Input, try again!");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        return outputStream.toString().trim();
+
     }
 
 
