@@ -1,4 +1,5 @@
 package Ben.ui;
+
 import Commands.*;
 import Storage.Storage;
 import Parser.Parser;
@@ -22,6 +23,14 @@ public class Ben {
             tasks = new TaskList();
         }
     }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Ben heard: " + input;
+    }
+
 
     public void run() {
 
