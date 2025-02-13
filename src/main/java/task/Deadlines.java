@@ -18,6 +18,10 @@ public class Deadlines extends Task {
 
     }
 
+    public void updateBy(LocalDateTime by){
+        this.by = by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + Parser.fromatToString(by) + ")";

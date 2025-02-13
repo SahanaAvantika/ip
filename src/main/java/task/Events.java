@@ -13,6 +13,14 @@ public class Events extends Task {
         this.to = to;
     }
 
+    public void updateTo(LocalDateTime to){
+        this.to = to;
+    }
+
+    public void updateFrom(LocalDateTime from){
+        this.from = from;
+    }
+
     @Override
     public String toString(){
         return "[E]" + super.toString() + " (from: " + Parser.fromatToString(from) + " to: "

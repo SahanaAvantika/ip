@@ -7,11 +7,13 @@ import commands.ListCommand;
 import commands.MarkCommand;
 import commands.UnmarkCommand;
 import commands.FindCommand;
+import commands.UpdateCommand;
 import command.Command;
 import task.Deadlines;
 import task.Events;
 import task.ToDos;
 import task.Task;
+import command.Section;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +40,21 @@ public class Parser {
         }
 
         switch (cmd){
+            case UPDATE:
+                try {
+                    Section section = Section.valueOf(response.split("\\s+")[1].split("\\s+")[0].
+                            trim().toUpperCase());
+                    int i = Integer.parseInt((String)response.split("of ")[1].split(" to")[0].trim());
+                    String update = response.split("to ")[1];
+
+                    return new UpdateCommand(section, i - 1, update);
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                    System.out.println("OOPS, please valid input after update, update _section_ of _int_ to ____");
+                }
+                break;
+
             case FIND:
                 try {
                     String des = response.split("\\s+")[1];
@@ -47,6 +64,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS, please valid input after find, find ____");
                 }
+                break;
 
             case BYE:
                 return new ByeCommand();
@@ -64,6 +82,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after mark, mark ____");
                 }
+                break;
 
             case UNMARK:
                 try {
@@ -75,6 +94,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after unmark, unmark ____");
                 }
+                break;
 
             case DELETE:
                 try {
@@ -86,6 +106,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after delete, delete ___");
                 }
+                break;
 
             case TODO:
                 try {
@@ -97,6 +118,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, todo _____");
                 }
+                break;
 
             case DEADLINE:
                 try {
@@ -111,6 +133,7 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, deadline _____ /by ___");
                 }
+                break;
 
             case EVENT:
                 try {
@@ -128,11 +151,13 @@ public class Parser {
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, event _____ /from __ /to __ ");
                 }
+                break;
 
             default:
                 System.out.println("Invalid Input, try again!");
                 return null;
         }
+        return null;
 
     }
 

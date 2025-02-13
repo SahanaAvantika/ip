@@ -30,6 +30,10 @@ public abstract class Task {
         return description;
     }
 
+    public void updateDes(String des){
+         this.description = des;
+    }
+
     /**
      * Returns a string representation of the task, including its completion status.
      *

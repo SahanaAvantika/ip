@@ -1,7 +1,13 @@
 package taskList;
 
+import task.Deadlines;
+import task.Events;
 import task.Task;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import command.Section;
+import task.ToDos;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -106,5 +112,30 @@ public class TaskList {
         }
         return aptTask;
     }
+
+    public void updateTask(Section section, int i, String update){
+        Task t = getTask(i);
+        if (section == Section.DES){
+            t.updateDes(update);
+        } else if (section == Section.BY){
+            if(t instanceof Deadlines){
+                LocalDateTime by = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                ((Deadlines) t).updateBy(by);
+            }
+        } else if(section == Section.TO){
+            if(t instanceof Events){
+                LocalDateTime to = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                ((Events) t).updateTo(to);
+            }
+        } else if (section == Section.FROM) {
+            if(t instanceof Events){
+                LocalDateTime from = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                ((Events) t).updateFrom(from);
+            }
+
+        }
+
+    }
+
 
 }
