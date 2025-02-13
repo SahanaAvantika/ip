@@ -17,15 +17,28 @@ public class Parser {
      * @return Commands command to execute.
      */
     public static Commands executeCommand(String response){
-        Command cmd = Command.valueOf(response.split("\\s+")[0].toUpperCase());
+        assert response != null : "Input command should not be null";
+        assert !response.trim().isEmpty() : "Input command should not be empty";
+
+        Command cmd;
+        try {
+            cmd = Command.valueOf(response.split("\\s+")[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid command! Try again.");
+            return null;
+        }
+
         switch (cmd){
             case FIND:
                 try {
                     String des = response.split("\\s+")[1];
+                    assert !des.isEmpty() : "Find command should have a search term";
                     return new FindCommand(des);
+
                 } catch (Exception e) {
                     System.out.println("OOPS, please valid input after find, find ____");
                 }
+
             case BYE:
                 return new ByeCommand();
 
@@ -34,55 +47,79 @@ public class Parser {
 
             case MARK:
                 try {
+                    assert response.length() > 5 : "Mark command should have an index";
                     int i = Integer.parseInt((String) response.subSequence(5, response.length()));
+                    assert i > 0 : "Task index should be positive";
                     return new MarkCommand(i - 1);
+
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after mark, mark ____");
                 }
+
             case UNMARK:
                 try {
+                    assert response.length() > 7 : "Unmark command should have an index";
                     int i = Integer.parseInt((String) response.subSequence(7, response.length()));
+                    assert i > 0 : "Task index should be positive";
                     return new UnmarkCommand(i - 1);
+
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after unmark, unmark ____");
                 }
+
             case DELETE:
                 try {
+                    assert response.length() > 7 : "Delete command should have an index";
                     int i = Integer.parseInt((String) response.subSequence(7, response.length()));
+                    assert i > 0 : "Task index should be positive";
                     return new DeleteCommand(i - 1);
+
                 } catch (Exception e) {
                     System.out.println("OOPS, please provide a number after delete, delete ___");
                 }
+
             case TODO:
                 try {
                     String x = (String) response.subSequence(5, response.length());
+                    assert !x.isEmpty() : "To-do description should not be empty";
                     ToDos c = new ToDos(x);
                     return new AddCommand(c);
+
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, todo _____");
                 }
+
             case DEADLINE:
                 try {
+                    assert response.contains("/by") : "Deadline command must contain '/by'";
                     String des = response.split("deadline ")[1].split("/by")[0].strip();
                     String date = response.split("/by")[1].strip();
                     LocalDateTime by = LocalDateTime.parse(date.replace(" ", "T") + ":00");
+                    assert by != null : "Parsed deadline date should not be null";
                     Deadlines c = new Deadlines(des, by);
                     return new AddCommand(c);
+
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, deadline _____ /by ___");
                 }
+
             case EVENT:
                 try {
+                    assert response.contains("/from") && response.contains("/to") : "Event command must contain " +
+                            "'/from' and '/to'";
                     String des = response.split("event ")[1].split("/from")[0].strip();
                     String from = response.split("/from")[1].split("/to")[0].strip();
                     LocalDateTime from_time = LocalDateTime.parse(from.replace(" ", "T") + ":00");
                     String to = response.split("/to")[1].strip();
                     LocalDateTime to_time = LocalDateTime.parse(to.replace(" ", "T") + ":00");
+                    assert from_time.isBefore(to_time) : "Event start time must be before end time";
                     Events c = new Events(des, from_time, to_time);
                     return new AddCommand(c);
+
                 } catch (Exception e) {
                     System.out.println("OOPS try giving this input, event _____ /from __ /to __ ");
                 }
+
             default:
                 System.out.println("Invalid Input, try again!");
                 return null;
@@ -98,6 +135,7 @@ public class Parser {
      * @return Task that the string represents.
      */
     public static Task txtToTask(String x) {
+
         try {
             if (x.charAt(1) == 'T') {
                 ToDos t = new ToDos(x.substring(7));
