@@ -1,8 +1,17 @@
-package Parser;
-
-import Commands.*;
-import Command.Command;
-import Task.*;
+package parser;
+import commands.AddCommand;
+import commands.ByeCommand;
+import commands.Commands;
+import commands.DeleteCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.UnmarkCommand;
+import commands.FindCommand;
+import command.Command;
+import task.Deadlines;
+import task.Events;
+import task.ToDos;
+import task.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

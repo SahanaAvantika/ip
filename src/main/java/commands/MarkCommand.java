@@ -1,7 +1,7 @@
-package Commands;
-import Storage.Storage;
-import TaskList.TaskList;
-import Ui.Ui;
+package commands;
+import storage.Storage;
+import taskList.TaskList;
+import ui.Ui;
 
 public class MarkCommand extends Commands {
     private int i;
