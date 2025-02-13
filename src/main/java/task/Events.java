@@ -1,5 +1,5 @@
-package Task;
-import Parser.Parser;
+package task;
+import parser.Parser;
 
 import java.time.LocalDateTime;
 

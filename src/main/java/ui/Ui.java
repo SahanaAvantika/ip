@@ -1,7 +1,7 @@
-package Ui;
+package ui;
 
-import Task.Task;
-import TaskList.TaskList;
+import task.Task;
+import taskList.TaskList;
 
 import java.util.ArrayList;
 

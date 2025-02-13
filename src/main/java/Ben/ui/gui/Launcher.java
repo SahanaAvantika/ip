@@ -1,4 +1,4 @@
-package Ben.ui.GUI;
+package Ben.ui.gui;
 
 import javafx.application.Application;
 

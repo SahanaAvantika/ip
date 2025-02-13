@@ -1,9 +1,9 @@
-package Commands;
+package commands;
 
-import Storage.Storage;
-import Task.Task;
-import TaskList.TaskList;
-import Ui.Ui;
+import storage.Storage;
+import task.Task;
+import taskList.TaskList;
+import ui.Ui;
 
 import java.util.ArrayList;
 

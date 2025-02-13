@@ -1,8 +1,7 @@
-package Ben.ui.GUI;
+package Ben.ui.gui;
 
 import Ben.ui.Ben;
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

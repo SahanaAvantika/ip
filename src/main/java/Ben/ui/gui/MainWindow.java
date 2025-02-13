@@ -1,4 +1,4 @@
-package Ben.ui.GUI;
+package Ben.ui.gui;
 
 import Ben.ui.Ben;
 import javafx.fxml.FXML;

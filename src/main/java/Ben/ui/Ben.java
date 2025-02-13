@@ -1,10 +1,10 @@
 package Ben.ui;
 
-import Commands.*;
-import Storage.Storage;
-import Parser.Parser;
-import TaskList.TaskList;
-import Ui.Ui;
+import commands.Commands;
+import storage.Storage;
+import parser.Parser;
+import taskList.TaskList;
+import ui.Ui;
 
 import java.util.Scanner;
 import java.io.ByteArrayOutputStream;
