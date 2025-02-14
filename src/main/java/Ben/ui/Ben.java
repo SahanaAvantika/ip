@@ -60,7 +60,7 @@ public class Ben {
 
     public void run() {
 
-        ui.introMsg(); //better msg coming
+        ui.introMsg();
         boolean isExit = false;
         Scanner scanner = new Scanner(System.in);
         

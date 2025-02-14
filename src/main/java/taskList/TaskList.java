@@ -7,7 +7,7 @@ import task.Task;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import command.Section;
-import task.ToDos;
+import java.time.format.DateTimeParseException;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -113,29 +113,55 @@ public class TaskList {
         return aptTask;
     }
 
-    public void updateTask(Section section, int i, String update){
-        Task t = getTask(i);
-        if (section == Section.DES){
-            t.updateDes(update);
-        } else if (section == Section.BY){
-            if(t instanceof Deadlines){
-                LocalDateTime by = LocalDateTime.parse(update.replace(" ", "T") + ":00");
-                ((Deadlines) t).updateBy(by);
-            }
-        } else if(section == Section.TO){
-            if(t instanceof Events){
-                LocalDateTime to = LocalDateTime.parse(update.replace(" ", "T") + ":00");
-                ((Events) t).updateTo(to);
-            }
-        } else if (section == Section.FROM) {
-            if(t instanceof Events){
-                LocalDateTime from = LocalDateTime.parse(update.replace(" ", "T") + ":00");
-                ((Events) t).updateFrom(from);
-            }
+    public void updateTask(Section section, int i, String update) {
+        try {
+            Task t = getTask(i);
+            assert t != null : "Task at index " + i + " should not be null";
 
+            if (section == Section.DES) {
+                t.updateDes(update);
+
+            } else if (section == Section.BY) {
+                if (t instanceof Deadlines) {
+                    try {
+                        LocalDateTime by = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                        ((Deadlines) t).updateBy(by);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Invalid date format for deadline. Use YYYY-MM-DD HH:MM.");
+                    }
+                } else {
+                    System.out.println("Error: Cannot update 'BY' for non-deadline task.");
+                }
+
+            } else if (section == Section.TO) {
+                if (t instanceof Events) {
+                    try {
+                        LocalDateTime to = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                        ((Events) t).updateTo(to);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Invalid date format for event 'TO'. Use YYYY-MM-DD HH:MM.");
+                    }
+                } else {
+                    System.out.println("Error: Cannot update 'TO' for non-event task.");
+                }
+
+            } else if (section == Section.FROM) {
+                if (t instanceof Events) {
+                    try {
+                        LocalDateTime from = LocalDateTime.parse(update.replace(" ", "T") + ":00");
+                        ((Events) t).updateFrom(from);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Invalid date format for event 'FROM'. Use YYYY-MM-DD HH:MM.");
+                    }
+                } else {
+                    System.out.println("Error: Cannot update 'FROM' for non-event task.");
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: Invalid task index.");
+        } catch (NullPointerException e) {
+            System.out.println("Error: Task not found.");
         }
-
     }
-
 
 }

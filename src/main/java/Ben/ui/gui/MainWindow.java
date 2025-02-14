@@ -26,6 +26,20 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaDiamond.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Omnitrix.png"));
 
+    public static void introMsg(){
+        System.out.println("Hello! I'm Ben");
+        System.out.println("What can I do for you?");
+
+        System.out.println("For a todo task, use: todo [task description]");
+        System.out.println("Example: todo Buy groceries");
+
+        System.out.println("For a deadline task, use: deadline [task description] /by [yyyy-MM-dd HH:mm]");
+        System.out.println("Example: deadline Submit report /by 2025-03-15 23:59");
+
+        System.out.println("For an event, use: event [event description] /from [yyyy-MM-dd HH:mm] /to [yyyy-MM-dd HH:mm]");
+        System.out.println("Example: event Team meeting /from 2025-03-15 14:00 /to 2025-03-15 15:30");
+    }
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

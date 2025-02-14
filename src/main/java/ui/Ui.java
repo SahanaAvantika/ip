@@ -94,5 +94,11 @@ public class Ui {
             System.out.println(s + "." + tasks.get(i).toString());
         }
     }
+
+    public static void update(Task past, Task present) {
+        System.out.println("Got it! I've updated the task:");
+        System.out.println("Updated " + past.toString() + " to: ");
+        System.out.println(present.toString());
+    }
 }
 

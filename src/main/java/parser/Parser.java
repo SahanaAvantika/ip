@@ -50,8 +50,8 @@ public class Parser {
                     return new UpdateCommand(section, i - 1, update);
 
                 } catch (Exception e) {
-                    System.out.println(e);
                     System.out.println("OOPS, please valid input after update, update _section_ of _int_ to ____");
+                    System.out.println("section = des/by/to/from");
                 }
                 break;
 

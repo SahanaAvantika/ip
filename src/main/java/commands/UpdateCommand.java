@@ -18,8 +18,11 @@ public class UpdateCommand extends Commands{
     }
 
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage){
+    public void execute(TaskList list, Ui ui, Storage storage) {
+        Task past = list.getTask(i);
         list.updateTask(section, i, update);
+        Task present = list.getTask(i);
+        ui.update(past, present);
     }
 
     @Override
