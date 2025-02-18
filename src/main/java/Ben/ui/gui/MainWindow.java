@@ -22,10 +22,9 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Ben ben;
-
+    private String intro = "Hello! I'm Ben\nWhat can I do for you?";
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaDiamond.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Omnitrix.png"));
-
+    private Image omniImage = new Image(this.getClass().getResourceAsStream("/images/Omnitrix.png"));
     public static void introMsg(){
         System.out.println("Hello! I'm Ben");
         System.out.println("What can I do for you?");
@@ -43,7 +42,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-    }
+        dialogContainer.getChildren().addAll(
+                DialogBox.getOmiDialog(intro, omniImage)
+        );    }
 
     /** Injects the Ben instance */
     public void setBen(Ben b) {
@@ -60,7 +61,7 @@ public class MainWindow extends AnchorPane {
         String response = ben.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getOmiDialog(response, omniImage)
         );
         userInput.clear();
     }
