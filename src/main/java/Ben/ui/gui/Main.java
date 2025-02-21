@@ -1,6 +1,6 @@
-package Ben.ui.gui;
+package ben.ui.gui;
 
-import Ben.ui.Ben;
+import ben.ui.Ben;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,14 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setBen(ben);
+
+            MainWindow controller = fxmlLoader.getController();
+            controller.setBen(ben);
+
+            stage.setOnCloseRequest(event -> {
+                controller.bye();
+            });
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

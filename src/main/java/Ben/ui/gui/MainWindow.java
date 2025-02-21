@@ -1,6 +1,6 @@
-package Ben.ui.gui;
+package ben.ui.gui;
 
-import Ben.ui.Ben;
+import ben.ui.Ben;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -49,6 +49,16 @@ public class MainWindow extends AnchorPane {
     /** Injects the Ben instance */
     public void setBen(Ben b) {
         ben = b;
+    }
+
+    /**
+     * Handles "bye" command when the window is closing.
+     */
+    public void bye() {
+        String response = ben.getResponse("bye");
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(response, omniImage)
+        );
     }
 
     /**

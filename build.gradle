@@ -42,7 +42,7 @@ test {
 }
 
 application {
-    mainClass.set("Ben.ui.gui.Launcher")
+    mainClass.set("ben.ui.gui.Launcher")
 }
 
 shadowJar {

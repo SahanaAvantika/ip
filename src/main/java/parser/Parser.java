@@ -116,7 +116,8 @@ public class Parser {
                     return new AddCommand(c);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS try giving this input, todo _____");
+                    System.out.println("OOPS try giving this input, \ntodo [task description]");
+                    System.out.println("Example: todo Buy groceries");
                 }
                 break;
 
@@ -131,7 +132,8 @@ public class Parser {
                     return new AddCommand(c);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS try giving this input, deadline _____ /by ___");
+                    System.out.println("OOPS try giving this input, \ndeadline [task description] /by [yyyy-MM-dd HH:mm]");
+                    System.out.println("Example: deadline Submit report /by 2025-03-15 23:59");
                 }
                 break;
 
@@ -149,7 +151,8 @@ public class Parser {
                     return new AddCommand(c);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS try giving this input, event _____ /from __ /to __ ");
+                    System.out.println("OOPS try giving this input, \nevent [event description] /from [yyyy-MM-dd HH:mm] /to [yyyy-MM-dd HH:mm]");
+                    System.out.println("Example: event Team meeting /from 2025-03-15 14:00 /to 2025-03-15 15:30");
                 }
                 break;
 
