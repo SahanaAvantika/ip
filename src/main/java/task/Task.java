@@ -34,6 +34,8 @@ public abstract class Task {
          this.description = des;
     }
 
+    public abstract Task clone();
+
     /**
      * Returns a string representation of the task, including its completion status.
      *

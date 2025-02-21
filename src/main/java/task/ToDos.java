@@ -7,6 +7,11 @@ public class ToDos extends Task {
     }
 
     @Override
+    public ToDos clone() {
+        return new ToDos(this.description);
+    }
+
+    @Override
     public String toString(){
         return "[T]" + super.toString();
     }

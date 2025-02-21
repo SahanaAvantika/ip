@@ -22,6 +22,11 @@ public class Events extends Task {
     }
 
     @Override
+    public Events clone() {
+        return new Events(this.description, this.from, this.to);
+    }
+
+    @Override
     public String toString(){
         return "[E]" + super.toString() + " (from: " + Parser.fromatToString(from) + " to: "
                 + Parser.fromatToString(to) + ")";

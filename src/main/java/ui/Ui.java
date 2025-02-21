@@ -96,9 +96,11 @@ public class Ui {
     }
 
     public static void update(Task past, Task present) {
-        System.out.println("Got it! I've updated the task:");
-        System.out.println("Updated " + past.toString() + " to: ");
-        System.out.println(present.toString());
+        System.out.println("Task Updated Successfully!");
+        System.out.println("Previous Task:");
+        System.out.println("    " + past.toString());
+        System.out.println("Updated Task:");
+        System.out.println("    " + present.toString());
     }
 }
 

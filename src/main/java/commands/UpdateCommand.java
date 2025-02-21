@@ -19,10 +19,11 @@ public class UpdateCommand extends Commands{
 
     @Override
     public void execute(TaskList list, Ui ui, Storage storage) {
-        Task past = list.getTask(i);
+        final Task past = list.getTask(i).clone();
         list.updateTask(section, i, update);
-        Task present = list.getTask(i);
+        final Task present = list.getTask(i);
         ui.update(past, present);
+
     }
 
     @Override

@@ -50,8 +50,11 @@ public class Parser {
                     return new UpdateCommand(section, i - 1, update);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please valid input after update, update _section_ of _int_ to ____");
-                    System.out.println("section = des/by/to/from");
+                    System.out.println("OOPS! Invalid input. Please provide a valid update command in the format:");
+                    System.out.println("update <section> of <index> to <new_value>");
+                    System.out.println("Valid sections: des, by, to, from");
+                    System.out.println("Example: update des of 2 to Buy groceries");
+
                 }
                 break;
 
@@ -62,7 +65,7 @@ public class Parser {
                     return new FindCommand(des);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please valid input after find, find ____");
+                    System.out.println("OOPS, please valid input after find: find [number]");
                 }
                 break;
 
@@ -80,7 +83,7 @@ public class Parser {
                     return new MarkCommand(i - 1);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please provide a number after mark, mark ____");
+                    System.out.println("OOPS, please provide a number after mark: mark [number]");
                 }
                 break;
 
@@ -92,7 +95,7 @@ public class Parser {
                     return new UnmarkCommand(i - 1);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please provide a number after unmark, unmark ____");
+                    System.out.println("OOPS, please provide a number after unmark: unmark [number]");
                 }
                 break;
 

@@ -18,6 +18,11 @@ public class Deadlines extends Task {
 
     }
 
+    @Override
+    public Deadlines clone() {
+        return new Deadlines(this.description, this.by);
+    }
+
     public void updateBy(LocalDateTime by){
         this.by = by;
     }
