@@ -113,8 +113,12 @@ public class Parser {
 
             case TODO:
                 try {
-                    String x = (String) response.subSequence(5, response.length());
-                    assert !x.isEmpty() : "To-do description should not be empty";
+                    String x = response.substring(5).trim();
+
+                    if (x.isEmpty()) {
+                        throw new IllegalArgumentException("To-do description should not be empty.");
+                    }
+
                     ToDos c = new ToDos(x);
                     return new AddCommand(c);
 
