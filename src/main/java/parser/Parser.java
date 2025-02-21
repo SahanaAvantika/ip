@@ -51,7 +51,7 @@ public class Parser {
 
                 } catch (Exception e) {
                     System.out.println("OOPS! Invalid input. Please provide a valid update command in the format:");
-                    System.out.println("update <section> of <index> to <new_value>");
+                    System.out.println("update [section] of [index] to [new_value]");
                     System.out.println("Valid sections: des, by, to, from");
                     System.out.println("Example: update des of 2 to Buy groceries");
 
@@ -65,7 +65,7 @@ public class Parser {
                     return new FindCommand(des);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please valid input after find: find [number]");
+                    System.out.println("OOPS, please valid input after find: find [term]");
                 }
                 break;
 
@@ -83,7 +83,7 @@ public class Parser {
                     return new MarkCommand(i - 1);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please provide a number after mark: mark [number]");
+                    System.out.println("OOPS, please provide a valid number after mark: mark [index]");
                 }
                 break;
 
@@ -95,7 +95,7 @@ public class Parser {
                     return new UnmarkCommand(i - 1);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please provide a number after unmark: unmark [number]");
+                    System.out.println("OOPS, please provide a valid number after unmark: unmark [index]");
                 }
                 break;
 
@@ -107,7 +107,7 @@ public class Parser {
                     return new DeleteCommand(i - 1);
 
                 } catch (Exception e) {
-                    System.out.println("OOPS, please provide a number after delete, delete ___");
+                    System.out.println("OOPS, please provide a valid number after delete: delete [index]");
                 }
                 break;
 
