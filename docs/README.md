@@ -82,6 +82,8 @@ Now you have 7 tasks in the list.
 
 To find a task, use: find [term]
 
+> Note : find is case-sensitive
+
 Example: `find meeting`
 
 ```
@@ -101,4 +103,14 @@ Previous Task:
  [T][ ] return book
 Updated Task:
  [T][ ] Buy groceries
+```
+
+## Bye
+
+To exit the application, you can either close the GUI directly or use: bye
+
+Example: `bye`
+
+```
+Bye. Hope to see you again soon!
 ```

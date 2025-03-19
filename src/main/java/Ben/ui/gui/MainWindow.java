@@ -1,6 +1,7 @@
 package ben.ui.gui;
 
 import ben.ui.Ben;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for the main GUI.
  */
@@ -29,10 +31,11 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        Platform.runLater(() -> scrollPane.setVvalue(0.0));
         dialogContainer.getChildren().addAll(
                 DialogBox.getOmiDialog(intro, omniImage)
-        );    }
+        );
+    }
 
     /** Injects the Ben instance */
     public void setBen(Ben b) {
