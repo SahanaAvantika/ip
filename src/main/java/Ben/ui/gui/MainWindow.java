@@ -1,7 +1,6 @@
 package ben.ui.gui;
 
 import ben.ui.Ben;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -31,7 +30,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        Platform.runLater(() -> scrollPane.setVvalue(0.0));
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
                 DialogBox.getOmiDialog(intro, omniImage)
         );
