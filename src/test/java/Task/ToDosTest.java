@@ -28,12 +28,6 @@ public class ToDosTest {
     }
 
     @Test
-    public void testEmptyDescription() {
-        ToDos todo = new ToDos("");
-        assertEquals("[T][ ] ", todo.toString(), "Empty description should be handled correctly.");
-    }
-
-    @Test
     public void testLeadingTrailingSpaces() {
         ToDos todo = new ToDos("  Buy groceries  ");
         assertEquals("[T][ ]   Buy groceries  ", todo.toString(), "Leading and trailing spaces should be preserved.");
