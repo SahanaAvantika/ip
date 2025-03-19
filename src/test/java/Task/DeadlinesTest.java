@@ -2,6 +2,7 @@ package Task;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
+import task.Deadlines;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
