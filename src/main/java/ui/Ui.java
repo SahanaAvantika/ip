@@ -79,8 +79,13 @@ public class Ui {
     /**
      * Displays a list of tasks to the user.
      */
-    public static void list(){
-        System.out.println("Here are the tasks in your list:");
+    public static void list(TaskList list){
+        if (list.size() == 0){
+            System.out.println("No tasks left!! WOHOO!!");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            list.printList();
+        }
     }
 
     /** Returns all tasks in the list with the word(input) given by user.
