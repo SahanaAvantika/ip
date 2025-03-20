@@ -20,7 +20,14 @@ public class Deadlines extends Task {
 
     @Override
     public Deadlines clone() {
-        return new Deadlines(this.description, this.by);
+        if (this.getDone()){
+            Deadlines d =  new Deadlines(this.description, this.by);
+            d.markAsDone();
+            return d;
+        } else {
+            return new Deadlines(this.description, this.by);
+        }
+
     }
 
     public void updateBy(LocalDateTime by){

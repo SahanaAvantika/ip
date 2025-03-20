@@ -8,11 +8,18 @@ public class ToDos extends Task {
 
     @Override
     public ToDos clone() {
-        return new ToDos(this.description);
+        if (this.getDone()){
+            ToDos t = new ToDos(this.description);
+            t.markAsDone();
+            return t;
+        } else {
+            return new ToDos(this.description);
+        }
     }
 
     @Override
     public String toString(){
         return "[T]" + super.toString();
     }
+
 }

@@ -22,7 +22,9 @@ public class UpdateCommand extends Commands{
         final Task past = list.getTask(i).clone();
         list.updateTask(section, i, update);
         final Task present = list.getTask(i);
-        ui.update(past, present);
+        if (!past.toString().equals(present.toString())) {
+            ui.update(past, present);
+        }
 
     }
 

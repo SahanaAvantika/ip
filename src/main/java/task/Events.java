@@ -23,7 +23,13 @@ public class Events extends Task {
 
     @Override
     public Events clone() {
-        return new Events(this.description, this.from, this.to);
+        if (this.getDone()){
+            Events e = new Events(this.description, this.from, this.to);
+            e.markAsDone();
+            return e;
+        } else {
+            return new Events(this.description, this.from, this.to);
+        }
     }
 
     @Override

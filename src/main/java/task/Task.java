@@ -1,5 +1,7 @@
 package task;
 
+import java.util.Objects;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -28,6 +30,10 @@ public abstract class Task {
      */
     public String getDescription(){
         return description;
+    }
+
+    public boolean getDone(){
+        return isDone;
     }
 
     public void updateDes(String des){
