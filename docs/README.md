@@ -114,3 +114,5 @@ Example: `bye`
 ```
 Bye. Hope to see you again soon!
 ```
+
+> Note : do not manually edit ben.txt, it is yet to process invalid inputs from storage
