@@ -24,6 +24,8 @@ public class UpdateCommand extends Commands{
         final Task present = list.getTask(i);
         if (!past.toString().equals(present.toString())) {
             ui.update(past, present);
+        } else {
+            System.out.println("No changes made");
         }
 
     }
